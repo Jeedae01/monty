@@ -1,25 +1,28 @@
 #include "monty.h"
 
 /**
-* addnode - function that adds node to the head stack
-* @head: head of the stack
-* @n: new value
+* f_pstr - function that prints the string starting at the top of the stack,
+* followed by a new
+* @head: head of stack
+* @counter: line count
 *
 * Return: nothing
 */
-void addnode(stack_t **head, int n)
+void f_pstr(stack_t **head, unsigned int counter)
 {
-	stack_t *new_node, *temp;
+	stack_t *h;
+	(void)counter;
 
-	temp = *head;
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-	{ printf("Error\n");
-		exit(0); }
-	if (temp)
-		temp->prev = new_node;
-	new_node->n = n;
-	new_node->next = *head;
-	new_node->prev = NULL;
-	*head = new_node;
+	h = *head;
+	while (h)
+	{
+		if (h->n > 127 || h->n <= 0)
+		{
+			break;
+		}
+		printf("%c", h->n);
+		h = h->next;
+	}
+	printf("\n");
 }
+
